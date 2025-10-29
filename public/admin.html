@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel - Smart Grocery</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #2e7d32;
+      color: #fff;
+      padding: 1rem 2rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+    }
+
+    .nav-links a.active {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    .btn {
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn.solid {
+      background: #388e3c;
+      color: white;
+    }
+
+    .btn.outline {
+      background: transparent;
+      border: 1px solid white;
+      color: white;
+    }
+
+    .container {
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      margin: 20px auto;
+      max-width: 900px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1, h2 {
+      color: #2e7d32;
+    }
+
+    .admin-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      background: #e0e0e0;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      border-radius: 6px;
+    }
+
+    .tab-btn.active {
+      background: #388e3c;
+      color: white;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .admin-form {
+      display: grid;
+      gap: 15px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    input, select {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .product-list {
+      margin-top: 30px;
+    }
+
+    .product-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f9f9f9;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .store-list {
+      margin-left: 40px;
+      font-size: 14px;
+    }
+
+    .remove-btn {
+      background: #d32f2f;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 10px;
+      cursor: pointer;
+      align-self: flex-end;
+    }
+
+    .remove-btn:hover {
+      background: #b71c1c;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="brand">Smart Grocery - Admin</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="admin.html" class="active">Admin</a>
+    </nav>
+    <div class="auth-actions">
+      <button class="btn outline" id="logout">Logout</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Admin Panel</h1>
+
+    <div class="admin-tabs">
+      <button class="tab-btn active" data-tab="products">Add Products</button>
+      <button class="tab-btn" data-tab="brands">Add Brand & Store</button>
+    </div>
+
+    <!-- Products Tab -->
+    <div id="products-tab" class="tab-content active">
+      <h2>Add New Product</h2>
+      <form id="product-form" class="admin-form">
+        <div class="form-group">
+          <label for="category">Category</label>
+          <select id="category" required>
+            <option value="">Select Category</option>
+            <option>Vegetables & Greens</option>
+            <option>Fruits</option>
+            <option>Grams & Pulses</option>
+            <option>Biscuits & Snacks</option>
+            <option>Chocolates & Sweets</option>
+            <option>Spices & Masalas</option>
+            <option>Dairy & Bakery</option>
+            <option>Beverages</option>
+            <option>Detergents & Cleaning</option>
+            <option>Personal Care</option>
+            <option>Baby Care</option>
+            <option>Others</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="name">Product Name</label>
+          <input type="text" id="name" placeholder="e.g. Urad Dal" required>
+        </div>
+
+        <div class="form-group">
+          <label for="image">Image URL or Emoji</label>
+          <input type="text" id="image" placeholder="🌾 or image link" required>
+        </div>
+
+        <button type="submit" class="btn solid">Add Product</button>
+      </form>
+
+      <div class="product-list" id="product-list">
+        <h2>All Products</h2>
+      </div>
+    </div>
+
+    <!-- Brands Tab -->
+    <div id="brands-tab" class="tab-content">
+      <h2>Add Brand & Store</h2>
+      <form id="brand-form" class="admin-form">
+        <div class="form-group">
+          <label for="brand-product">Product Name</label>
+          <input type="text" id="brand-product" placeholder="e.g. Urad Dal" required>
+        </div>
+
+        <div class="form-group">
+          <label for="brand-name">Brand Name</label>
+          <input type="text" id="brand-name" placeholder="e.g. Aashirvad" required>
+        </div>
+
+        <div class="form-group">
+          <label for="brand-store">Store Name</label>
+          <input type="text" id="brand-store" placeholder="e.g. Dmart" required>
+        </div>
+
+        <div class="form-group">
+          <label for="brand-price">Price (₹)</label>
+          <input type="number" id="brand-price" required>
+        </div>
+
+        <div class="form-group">
+          <label for="brand-weight">Weight/Size</label>
+          <input type="text" id="brand-weight" placeholder="e.g. 1kg" required>
+        </div>
+
+        <div class="form-group">
+          <label for="brand-image">Image</label>
+          <input type="text" id="brand-image" placeholder="🌾 or image link" required>
+        </div>
+
+        <button type="submit" class="btn solid">Add / Update Store</button>
+      </form>
+
+      <div class="product-list" id="brand-list">
+        <h2>All Brands</h2>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>

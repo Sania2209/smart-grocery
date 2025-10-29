@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Grocery</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="brand">Smart Grocery</div>
+    <nav class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="#categories">Categories</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+    <div class="auth-actions" id="auth-actions"></div>
+  </header>
+
+  <section class="banner">
+    <div class="banner-content">
+      <h1>Find the Best Grocery Prices Near You!</h1>
+      <p>Compare prices across stores and save on every basket.</p>
+      <div class="search-bar">
+        <input id="searchInput" type="text" placeholder="Search products or brands..." />
+        <button id="searchButton" class="btn solid">Search</button>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    <section id="categories" class="categories">
+      <h2>Shop by Category</h2>
+      <div class="grid">
+        <button class="category">Vegetables & Greens</button>
+        <button class="category">Fruits</button>
+        <button class="category">Grams & Pulses</button>
+        <button class="category">Biscuits & Snacks</button>
+        <button class="category">Chocolates & Sweets</button>
+        <button class="category">Spices & Masalas</button>
+        <button class="category">Dairy & Bakery</button>
+        <button class="category">Beverages</button>
+        <button class="category">Detergents & Cleaning</button>
+        <button class="category">Personal Care</button>
+        <button class="category">Baby Care</button>
+        <button class="category">Others</button>
+      </div>
+    </section>
+
+    <section class="featured">
+      <h2>Popular Right Now</h2>
+      <div id="featured-list" class="cards"></div>
+    </section>
+
+    <section class="product-cards">
+      <h2 id="product-cards-title">Shop by Product</h2>
+      <div id="product-cards-grid" class="product-cards-grid">
+        <!-- Product cards will be loaded dynamically -->
+      </div>
+    </section>
+
+    
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Smart Grocery</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  
+  <!-- Floating Cart Widget -->
+  <div id="cart-widget" class="cart-widget" aria-live="polite">
+    <button id="cart-toggle" class="btn solid cart-toggle">Cart (<span id="cart-count">0</span>)</button>
+    <div id="cart-panel" class="cart-panel" hidden>
+      <div class="cart-items" id="cart-items-mini"></div>
+      <div class="cart-actions">
+        <button class="btn outline" onclick="window.location.href='cart.html'">View Cart</button>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Brands - Smart Grocery</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="brand">Smart Grocery</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="#categories">Categories</a>
+      <a href="cart.html">Cart</a>
+      <a href="#profile">Profile</a>
+      <a href="#orders">Order History</a>
+    </nav>
+    <div class="auth-actions">
+      <button class="btn outline" onclick="window.location.href='signup.html'">Sign Up</button>
+      <button class="btn solid" onclick="window.location.href='login.html'">Login</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> > <span id="product-name">Product Brands</span>
+    </div>
+    
+    <section class="brands-section">
+      <h1 id="brands-title">Product Brands</h1>
+      <p id="brands-description">Choose from different brands of this product</p>
+      
+      <div id="brands-grid" class="brands-grid">
+        <!-- Brands will be loaded dynamically -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Smart Grocery</p>
+  </footer>
+
+  <!-- Floating Cart Widget -->
+  <div id="cart-widget" class="cart-widget" aria-live="polite">
+    <button id="cart-toggle" class="btn solid cart-toggle">Cart (<span id="cart-count">0</span>)</button>
+    <div id="cart-panel" class="cart-panel" hidden>
+      <div class="cart-items" id="cart-items-mini"></div>
+      <div class="cart-actions">
+        <button class="btn outline" onclick="window.location.href='cart.html'">View Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script>
+    // Check if the page is opened for 'View Brands' mode
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('view') === 'brands') {
+      sessionStorage.setItem('viewMode', 'brands');
+    } else {
+      sessionStorage.removeItem('viewMode');
+    }
+  </script>
+  
+  <script type="module" src="brands.js"></script>
+</body>
+</html>

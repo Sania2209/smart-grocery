@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signup - Smart Grocery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="auth-page">
+  <div class="auth-card">
+    <h2>Create your account</h2>
+    <p class="lead">Sign up to start comparing prices</p>
+    <form id="signup-form">
+      <div class="form-group">
+        <input type="email" id="email" placeholder="Email" required>
+      </div>
+      <div class="form-group">
+        <input type="password" id="password" placeholder="Password" required>
+      </div>
+      <div class="actions">
+        <a class="muted-link" href="login.html">Already have an account?</a>
+        <button class="btn solid" type="submit">Sign Up</button>
+      </div>
+    </form>
+  </div>
+
+  <script type="module">
+    import { auth } from "./firebase.js";
+    import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+
+    const form = document.getElementById("signup-form");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        alert("Signup successful! You can now log in.");
+        window.location.href = "login.html";
+      } catch (error) {
+        alert(error.message);
+      }
+    });
+  </script>
+</body>
+</html>
